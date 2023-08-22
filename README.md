@@ -29,7 +29,11 @@
 ## Installation
 
 ```bash
+# Instala dependencias
 $ pnpm install
+
+# Inicializa docker
+$ docker compose up dev-db -d
 
 # Inicializa prisma
 $ npx prisma init
@@ -42,9 +46,6 @@ $ npx prisma migrate dev
 ## Running the app
 
 ```bash
-#init docker
-$ docker compose up dev-db -d
-
 # development
 $ pnpm run start
 
@@ -66,6 +67,12 @@ $ pnpm run test:e2e
 
 # test coverage
 $ pnpm run test:cov
+```
+
+## Database
+```bash
+# Reset database
+$ pnpm run db:dev:reset
 ```
 
 ## Dev
