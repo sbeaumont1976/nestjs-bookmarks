@@ -58,5 +58,20 @@ export class BookmarkService {
     });
   }
 
-  deleteBookmarkById(userId: number, bookmarkId: number) {}
+  async deleteBookmarkById(userId: number, bookmarkId: number) {
+    const bookmark = await this.prisma.bookmark.findUnique({
+      where: {
+        userId,
+        id: bookmarkId,
+      },
+    });
+
+    if (!bookmark) throw new ForbiddenException('No bookmark found');
+
+    return this.prisma.bookmark.delete({
+      where: {
+        id: bookmarkId,
+      },
+    });
+  }
 }
