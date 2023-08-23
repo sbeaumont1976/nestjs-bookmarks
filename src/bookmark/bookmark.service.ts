@@ -14,9 +14,25 @@ export class BookmarkService {
     });
   }
 
-  getBookmarkById(userId: number, bookmarkId: number) {}
+  getBookmarkById(userId: number, bookmarkId: number) {
+    console.log('======>', bookmarkId);
+    return this.prisma.bookmark.findFirst({
+      where: {
+        userId,
+        id: bookmarkId,
+      },
+    });
+  }
 
-  createBookmark(userId: number, dto: CreateBookmarkDto) {}
+  async createBookmark(userId: number, dto: CreateBookmarkDto) {
+    const bookmark = this.prisma.bookmark.create({
+      data: {
+        userId,
+        ...dto,
+      },
+    });
+    return bookmark;
+  }
 
   editBookmarkById(userId: number, bookmarkId: number, dto: EditBookmarkDto) {}
 
